@@ -3,10 +3,19 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
+	"runtime"
 	"time"
 )
 
+func add(x, y int) int {
+	return x + y
+}
+
 func main() {
+	// Defer will execute return: push element to stack
+	defer fmt.Println("EOF")
+
 	// Hello World
 	fmt.Println("hello world")
 	// Value
@@ -46,6 +55,15 @@ func main() {
 	default:
 		fmt.Println("Work day")
 	}
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
 	// Interface
 	whatAmI := func(i interface{}) {
 		switch t := i.(type) {
@@ -79,4 +97,14 @@ func main() {
 		fmt.Printf("Index: %d and Value: %v", i, v)
 	}
 	// Control statement
+
+	// Random
+	fmt.Println("My favorite number is", rand.Intn(10))
+
+	// User Declare Function
+	fmt.Println(add(42, 13))
+
+	// OS
+	os := runtime.GOOS
+	fmt.Println(os)
 }
